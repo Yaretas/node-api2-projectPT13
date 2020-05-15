@@ -1,6 +1,7 @@
 const express = require("express");
 
-const db = "./data/db.js";
+//Calling the router file
+const dbRouter = require('../data-router/db-router.js');
 
 //calling the server from index.js
 const server = express();
@@ -15,18 +16,9 @@ server.get('/', (req, res) => {
     `);
 });
 
-//Create endpoints handler
-
-server.get('/', (req, res) => {});
-
-server.get('/', (req, res) => {});
-
-server.post('/', (req, res) => {});
-
-server.delete('/', (req, res) => {});
-
-server.post('/', (req, res) => {});
-
+// the router handles endpoints that begin with /api/posts
+server.use('/api/posts', dbRouter);
+//the router only cares about what comes after /api/posts in this instance.
 
 // Export server
 module.exports = server;
